@@ -27,7 +27,9 @@ namespace RobotWar.Models
 
 		public void setFault()
 		{
-			this.Faults++;	
+			
+				this.Faults++;
+		
 		}
 	}
 }

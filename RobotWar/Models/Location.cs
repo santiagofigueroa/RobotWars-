@@ -30,7 +30,7 @@ namespace RobotWar.Model
 			Y = y;
 
 			heading = new Dictionary<char, int>
-			{
+			{// Might just change this to be the 90 ,  180 
 				{ 'N', 0 },
 				{ 'E', 1 },
 				{ 'S', 2 },
@@ -54,5 +54,10 @@ namespace RobotWar.Model
 			heading.TryGetValue(key, out int value);
 			return value;
 		}
+
+		// Threshold for it not to pass the 5x5. 
+
+		public static bool InRange(int x, int y) => (Math.Abs(x - x) + Math.Abs(y - y)) <= 5;
+
 	}
 }

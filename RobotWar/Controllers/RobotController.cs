@@ -1,4 +1,5 @@
 ﻿using System;
+using static System.Console;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using RobotWar.Models;
@@ -49,6 +50,7 @@ namespace RobotWar.Controllers
 				switch (instruction)
 				{
 					// Case when moving left or right.
+					// It has to be 90 to both left or right. 
 					case 'R':
 					case 'L':
 						var newLocation = MoveLeftRight(robot.Rlocation, instruction);
@@ -61,6 +63,7 @@ namespace RobotWar.Controllers
 						robot.Rlocation = CheckArenaLimits(robot,newLocationXY);
 						break;
 				}
+				// 
 				robotList.Add(robot);
 	
 
@@ -109,8 +112,8 @@ namespace RobotWar.Controllers
 
 		public Location CheckArenaLimits(Robot robot,Location newLocation)
 		{
-			if ((Enumerable.Range(0, 4).Contains(newLocation.X)) &&
-				(Enumerable.Range(0, 4).Contains(newLocation.Y)))
+			// This will test if the robot is in the grid Range . 
+			if (Location.InRange(robot.Rlocation.X,robot.Rlocation.Y))
 			{
 				// Return thew new location given. 
 				return newLocation;
@@ -127,7 +130,7 @@ namespace RobotWar.Controllers
 
 		private Location MoveLeftRight(Location currentLocation, char instruction) 
 		{
-			var newLocation = currentLocation;
+			var newLocation = new Location(0,0,'N');
 			// Pointing North 
 			if (currentLocation.currentDirection == 0)
 			{
